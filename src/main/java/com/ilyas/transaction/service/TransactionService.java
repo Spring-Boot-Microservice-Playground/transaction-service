@@ -1,28 +1,32 @@
 package com.ilyas.transaction.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
-import org.bson.Document;
+import com.ilyas.transaction.model.Transaction;
+import com.ilyas.transaction.repository.TransactionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionService {
-    private MongoClient client = MongoClients.create("mongodb://127.0.0.1:27017");
-    private MongoDatabase transactionDatabase = client.getDatabase("transaction-ms-playground");
-	private MongoCollection<Document> transacCollectionCollection = transactionDatabase.getCollection("transaction");
+
+    @Autowired
+    private TransactionRepository repository;
 
     public TransactionService() {
     }
     
-    public List<Document> getTransactionHistory(){
-        List<Document> result = new ArrayList<Document>();
-		transacCollectionCollection.find().forEach(result::add);
+    public List<Transaction> getTransactionHistory(){
+        List<Transaction> result = repository.findAll();
 		return result;
+    }
+
+    public Transaction saveTransaction(Transaction t){
+        try {
+            repository.save(t);
+            return t;
+        } catch (Exception exception) {
+            return t;
+        }
     }
 }
