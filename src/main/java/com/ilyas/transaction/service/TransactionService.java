@@ -1,5 +1,6 @@
 package com.ilyas.transaction.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.ilyas.transaction.model.Transaction;
@@ -16,8 +17,8 @@ public class TransactionService {
     public TransactionService() {
     }
     
-    public List<Transaction> getTransactionHistory(){
-        List<Transaction> result = repository.findAll();
+    public List<Transaction> getTransactionHistoryToday(LocalDate dateTime){
+        List<Transaction> result = repository.findByDate(dateTime);
 		return result;
     }
 
