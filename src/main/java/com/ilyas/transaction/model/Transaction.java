@@ -10,14 +10,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Transaction {
     @Id
     private String id;
-    private String customerName;
     private LocalDateTime date;
+    private String customer_name;
+    private Integer cash;
+    private Integer change;
     private List<Product> products;
-    
-    public Transaction(String id, String customerName, LocalDateTime date, List<Product> products) {
+    public Transaction(String id, LocalDateTime date, String customer_name, Integer cash, Integer change,
+            List<Product> products) {
         this.id = id;
-        this.customerName = customerName;
         this.date = date;
+        this.customer_name = customer_name;
+        this.cash = cash;
+        this.change = change;
         this.products = products;
     }
     public String getId() {
@@ -26,17 +30,29 @@ public class Transaction {
     public void setId(String id) {
         this.id = id;
     }
-    public String getCustomerName() {
-        return customerName;
-    }
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
     public LocalDateTime getDate() {
         return date;
     }
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+    public String getCustomer_name() {
+        return customer_name;
+    }
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+    public Integer getCash() {
+        return cash;
+    }
+    public void setCash(Integer cash) {
+        this.cash = cash;
+    }
+    public Integer getChange() {
+        return change;
+    }
+    public void setChange(Integer change) {
+        this.change = change;
     }
     public List<Product> getProducts() {
         return products;

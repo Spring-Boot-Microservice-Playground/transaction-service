@@ -1,13 +1,9 @@
 package com.ilyas.transaction.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class Product {
     private String name;
     private Integer amount;
     private Integer price;
-    
     public Product(String name, Integer amount, Integer price) {
         this.name = name;
         this.amount = amount;
