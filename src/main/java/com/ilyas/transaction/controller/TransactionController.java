@@ -35,6 +35,7 @@ public class TransactionController {
             Transaction _t = transactionService.saveTransaction(t);
             return new ResponseEntity<Transaction>(_t, HttpStatus.CREATED);
         } catch(Exception exception){
+            exception.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 

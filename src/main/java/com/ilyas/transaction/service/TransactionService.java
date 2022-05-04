@@ -20,11 +20,7 @@ public class TransactionService {
     }
 
     public Transaction saveTransaction(Transaction t){
-        try {
-            repository.save(t);
-            return t;
-        } catch (Exception exception) {
-            return t;
-        }
+        repository.save(t);
+        return t;
     }
 }
