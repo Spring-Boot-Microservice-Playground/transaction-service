@@ -13,12 +13,6 @@ public class TransactionService {
 
     @Autowired
     private TransactionRepository repository;
-
-    // @Autowired
-    // private TransactionRepository repository;
-
-    // public TransactionService() {
-    // }
     
     public List<Transaction> getTransactionHistoryToday(LocalDate dateTime){
         List<Transaction> result = repository.findByDate(dateTime);
