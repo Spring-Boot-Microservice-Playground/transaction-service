@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.ilyas.transaction.model.Transaction;
+import com.ilyas.transaction.repository.TransactionRepository;
 import com.ilyas.transaction.service.TransactionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ public class TransactionController {
 
     @Autowired
 	private TransactionService transactionService;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
 	@GetMapping
 	public List<Transaction> getTransactionHistoryToday(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTime){
-		return transactionService.getTransactionHistoryToday(dateTime);
+		return transactionRepository.findByDate(dateTime);
 	}
 
     @PostMapping
