@@ -15,7 +15,7 @@ public class TransactionService {
     RestTemplate restTemplate;
 
     public Transaction saveTransaction(Transaction t) throws Exception {
-        t.getProducts().stream().forEach(p -> System.out.println(p.getId()));
+        t.setId(null);
         t.getProducts().stream().forEach(p -> restTemplate.put("http://product-service/product/purchase", p));
         repository.save(t);
         return t;
