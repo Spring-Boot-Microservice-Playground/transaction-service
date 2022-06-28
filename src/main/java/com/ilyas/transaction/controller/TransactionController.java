@@ -1,6 +1,8 @@
 package com.ilyas.transaction.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.ilyas.transaction.model.Transaction;
@@ -30,7 +32,10 @@ public class TransactionController {
     private TransactionRepository transactionRepository;
 
 	@GetMapping
-	public List<Transaction> getTransactionHistoryToday(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTime){
+	public List<Transaction> getTransactionHistoryToday(
+            @RequestParam(value = "start", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTime){
+        if(dateTime == null) dateTime = LocalDate.now();
 		return transactionRepository.findByDate(dateTime);
 	}
 

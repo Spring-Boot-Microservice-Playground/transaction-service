@@ -8,6 +8,7 @@ class TransactionApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("this is the first test");
 	}
 
 }
